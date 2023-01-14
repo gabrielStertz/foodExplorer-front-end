@@ -1,0 +1,19 @@
+export default {
+  COLORS: {
+    BACKGROUND_GERAL: "#000a0f",
+    BACKGROUND_ELEMENTS: "#00111A",
+    BACKGROUND_CARDS: "rgba(0,0,0,0.32)",
+    BACKGROUND_GRAY: "#0D1D25",
+
+    RED: "#750310",
+    LIGHT_BLUE: "#82F3FF",
+    DARK_BLUE: "#065E7C",
+
+    COLOR_STRONG: "#E1E1E6",
+    COLOR_MEDIUM: "#C4C4CC",
+    COLOR_LIGHT: "#7C7C8A",
+    COLOR_FOOTER_RIGHT: "#FFFAF1",
+    COLOR_FOOTER_LEFT: "rgba(255, 255, 255, 0.3)"
+
+  }
+};
