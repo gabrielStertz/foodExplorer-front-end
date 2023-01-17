@@ -10,6 +10,7 @@ export const Container = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 32px;
+  z-index: 10;
   position: fixed;
   top: 0;
   left: 0;

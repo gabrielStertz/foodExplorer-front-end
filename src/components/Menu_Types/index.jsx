@@ -1,14 +1,18 @@
 import { Container } from "./style";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
-export function Menu_Types({title, children, ...rest}){
+export function MenuTypes({title, children, ...rest}){
 
   return (
     <Container {...rest}>
       <h1>{title}</h1>
-      <button className="back"><FiChevronLeft size={16}/></button>
-      {children}
-      <button className="front"><FiChevronRight size={16}/></button>
+      <div className="cards-and-buttons">
+        <button className="back"><FiChevronLeft size={30}/></button> 
+          <div className="cards">
+            {children}
+          </div>
+        <button className="front"><FiChevronRight size={30}/></button>
+      </div>
     </Container>
   );
 };
