@@ -1,110 +1,60 @@
-import { useState } from "react";
+import { Container } from "./style";
 
-import { Container } from "./style.js";
+import { FiChevronLeft, FiPlus, FiMinus } from "react-icons/fi";
+import { TfiReceipt } from "react-icons/tfi";
 
-import { Button } from "../../components/Button";
+import imagemPrato from "../../assets/saladaRavanello.png";
+import imagemAlface from "../../assets/alface.png";
+import imagemTomate from "../../assets/tomate.png";
+import imagemRabanete from "../../assets/rabanete.png";
+import imagemPao from "../../assets/paoNaan.png";
+
 import { Header } from "../../components/Header";
-import { MenuTypes } from "../../components/Menu_Types";
-import { MenuCards } from "../../components/MenuCards";
 import { Footer } from "../../components/Footer";
+import { Button } from "../../components/Button";
 
 export function Details(){
-  const [quantity, setQuantity] = useState(0);
 
-  const data = {
-    "name": "Lazanha",
-    "description": "Prato italiano muito apreciado",
-    "type": "prato principal",
-    "price": 20.00,
-    "picture": "../../assets/Mask group-1.png"
-  };
-
-  // setPicture(`../../assets/${data.picture}`)
-  
-  return(
+  return (
     <Container>
       <Header/>
-      <div className="menu">
-      <MenuTypes title="Prato Principal">
-        <MenuCards 
-          data={data}
-          quantity={quantity}
-        />
-        <MenuCards 
-          data={data}
-          favorited
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-      </MenuTypes>
-      <MenuTypes title="Sobremesa">
-      <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-        <MenuCards 
-          data={data}
-        />
-      </MenuTypes>
-      </div>
+        <button className="back-button"><FiChevronLeft size={24}/> voltar</button>
+        <div className="geral">
+          <img src={imagemPrato} alt="imagem do prato" />
+          <div className="information">
+            <h1>Salada Ravanello</h1>
+            <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.</p>
+            <div className="ingredients">
+              <div>
+                <img src={imagemAlface} alt="imagem de alface" />
+                <p>alface</p>
+              </div>
+              <div>
+                <img src={imagemTomate} alt="imagem de tomate" />
+                <p>tomate</p>
+              </div>
+              <div>
+                <img src={imagemRabanete} alt="imagem de rabanete" />
+                <p>rabanete</p>
+              </div>
+              <div>
+                <img src={imagemPao} alt="imagem de pão naan" />
+                <p>pão naan</p>
+              </div>
+            </div>
+            <div className="price-and-buttons">
+              <p>R$ 25,97</p>
+              <div>
+                <button><FiMinus size={20}/></button>
+                <span>01</span>
+                <button><FiPlus size={20}/></button>
+              </div>
+              <Button title="incluir" icon={TfiReceipt}/>
+            </div>
+          </div>
+        </div>
       <Footer/>
     </Container>
   );
+
 };

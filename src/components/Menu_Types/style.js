@@ -18,20 +18,17 @@ export const Container = styled.div`
     
     display: flex;
     align-items: center;
+    gap: 27px;
+
+    position: relative;
+    left: 0;
     
     
     overflow-x: scroll;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
     
-    .cards {
-
-      display: flex;
-      align-items: center;
-      gap: 27px;
-
-
-      z-index: 1;
-    }
-
+    z-index: 1;
     .front, .back{
       min-width: 116px;
       height: 512px;

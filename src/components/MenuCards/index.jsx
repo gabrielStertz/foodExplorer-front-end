@@ -8,9 +8,10 @@ import { Button } from "../Button";
 
 export function MenuCards({data, quantity, favorited = false, ...rest}){
   const stringPrice = `R$ ${data.price}, 00`;
+
   return (
     <Container {...rest}>
-      <img src={data.picture} alt="Imagem do prato" />
+      <img src={`https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60`} alt="Imagem do prato" />
       <button className="details">
         <h1>{data.name}</h1>
         <TiChevronRight size={24}/>
