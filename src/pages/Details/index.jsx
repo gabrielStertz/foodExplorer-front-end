@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { Container } from "./style";
 
 import { FiChevronLeft, FiPlus, FiMinus } from "react-icons/fi";
@@ -15,10 +17,16 @@ import { Button } from "../../components/Button";
 
 export function Details(){
 
+  const navigate = useNavigate();
+
+  function handleBack(){
+    navigate("/");
+  };
+
   return (
     <Container>
       <Header/>
-        <button className="back-button"><FiChevronLeft size={24}/> voltar</button>
+        <button className="back-button" onClick={handleBack}><FiChevronLeft size={24}/> voltar</button>
         <div className="geral">
           <img src={imagemPrato} alt="imagem do prato" />
           <div className="information">

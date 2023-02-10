@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Container } from "./style";
 
 import { AiOutlineCreditCard } from "react-icons/ai";
+import { FiChevronLeft } from "react-icons/fi";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -14,6 +16,8 @@ export function OrderDetails(){
   const [pix, setPix] = useState(false);
   const [credit, setCredit] = useState(false);
 
+  const navigate = useNavigate();
+
   function handleClickPix(){
     setPix(true);
     setCredit(false);
@@ -22,6 +26,10 @@ export function OrderDetails(){
   function handleClickCredit(){
     setPix(false);
     setCredit(true);
+  };
+
+  function handleBack(){
+    navigate("/orders");
   };
 
   return (
@@ -75,8 +83,11 @@ export function OrderDetails(){
           <p className="total">Total: R$ 103,88</p>
         </div>
         <div className="pay">
-          <h1>Pagamento</h1>
-          <div>
+          <div className="pay-title">
+            <h1>Pagamento</h1>
+            <button onClick={handleBack}><FiChevronLeft/>Voltar</button>
+          </div>
+          <div className="content">
             <div className="pay-metod">
               <button className="pix" onClick={handleClickPix} style={{background: pix ? "rgba(255, 255, 255, 0.05)" : "transparent"}}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 952.77 338.7">

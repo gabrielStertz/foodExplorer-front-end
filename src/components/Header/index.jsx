@@ -1,11 +1,29 @@
+import { useNavigate } from "react-router-dom";
+
 import { Container } from "./style";
+import { useAuth } from "../../hooks/auth";
+
 import { FiSearch, FiLogOut } from "react-icons/fi";
 import { TfiReceipt } from "react-icons/tfi";
 
 import { HeaderInput } from "../HeaderInput";
 import { Button } from "../Button"
 
-export function Header({isAdmin}){
+export function Header({isAdmin, onChange}){
+
+  const navigate = useNavigate();
+
+  const { signOut } = useAuth();
+
+  function handleClickOrders(){
+    
+    navigate("/orders")
+  };
+
+  function handleAddMenu(){
+    navigate("/add");
+  };
+
   if(isAdmin){
     return (
       <Container>
@@ -19,17 +37,27 @@ export function Header({isAdmin}){
         <p>Administrador</p>
         <HeaderInput
           icon={FiSearch}
+          onChange={onChange}
           placeholder="Busque pelas opções de pratos"
         />
         <Button
+          onClick={handleAddMenu}
           className="add-menu"
           title="Adicionar prato"
         />
         <Button
           className="orders"
           title="Acompanhar pedidos"
+          onClick={handleClickOrders}
         />
-        <button type="button" className="logOut">
+        <button 
+          type="button" 
+          className="logOut" 
+          onClick={() => {
+            signOut();
+            navigate("/");
+          }}
+        >
           <FiLogOut size={22}/>
         </button>
         </div>
@@ -50,14 +78,23 @@ export function Header({isAdmin}){
       </button>
       <HeaderInput 
         icon={FiSearch}
+        onChange={onChange}
         placeholder="Busque pelas opções de pratos"
       />
       <Button
+        onClick={handleClickOrders}
         className="orders"
         icon={TfiReceipt}
         title="Meu pedido (0)"
       />
-      <button type="button" className="logOut">
+      <button 
+        type="button" 
+        className="logOut" 
+        onClick={() => {
+          signOut();
+          navigate("/");
+        }}
+      >
         <FiLogOut size={22}/>
       </button>
       </div>  

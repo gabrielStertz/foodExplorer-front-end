@@ -3,7 +3,23 @@ import styled from "styled-components";
 export const Container = styled.div`
   
   padding: 107px 123px 77px;
+  .title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .back{
+    background: none;
+    border: none;
 
+    color: ${({theme}) => theme.COLORS.COLOR_STRONG};
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 
   h1{
     color: ${({theme}) => theme.COLORS.COLOR_STRONG};

@@ -5,17 +5,17 @@ import GlobalStyles from "./styles/global";
 
 import theme from "./styles/theme";
 
-import { Home } from './pages/Home';
-import { Details } from './pages/Details';
-import { Orders } from './pages/Orders';
-import { OrdersAdmin } from './pages/OrdersAdmin';
-import { OrderDetails } from './pages/OrderDetails';
+import { AuthProvider } from './hooks/auth';
+
+import { Routes } from './routes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
-      <OrdersAdmin />
+        <AuthProvider>
+          <Routes/>
+        </AuthProvider>  
     </ThemeProvider>
   </React.StrictMode>,
 );

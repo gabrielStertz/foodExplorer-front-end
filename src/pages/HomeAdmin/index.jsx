@@ -1,34 +1,31 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api } from "../../services/api.js";
-import { useAuth } from "../../hooks/auth.jsx";
-
 import { Container} from "./style.js";
+
+import { api } from "../../services/api.js";
 
 import { Header } from "../../components/Header";
 import { MenuTypes } from "../../components/Menu_Types";
 import { MenuCards } from "../../components/MenuCards";
 import { Footer } from "../../components/Footer";
 import Imagem from "../../assets/imagemHome.png";
-import ImagemPrato from "../../assets/saladaRavanello.png";
 
-export function Home(){
+export function HomeAdmin(){
+  const [quantity, setQuantity] = useState(0);
   const [container1, setContainer1] = useState();
   const [container2, setContainer2] = useState();
   const [container3, setContainer3] = useState();
+  const [search, setSearch] = useState("");
   const [menu, setMenu] = useState([]);
   const [pratoPrincipal, setPratoPrincipal] = useState([]);
   const [sobremesa, setSobremesa] = useState([]);
   const [bebida, setBebida] = useState([]);
-  const [search, setSearch] = useState("");
 
   const navigate = useNavigate();
-  const { user } = useAuth();
-
-
+  
   useEffect(() => {
-
+    
     setContainer1(document.getElementById("Prato Principal"));
     setContainer2(document.getElementById("Sobremesa"));
     setContainer3(document.getElementById("Bebidas"));
@@ -56,13 +53,13 @@ export function Home(){
     container3.scrollLeft += 100;
   };
 
-  function handleClickDetails(id){
-    navigate(`/details/${id}`)
+  function handleEditMenu(id){
+    navigate(`/add`)
   };
 
   useEffect(() => {
     async function fetchMenu(){
-      const response =  await api.get(`/menu?name=${search}`);
+      const response = await api.get(`/menu?name=${search}`);
       setMenu(response.data);
     };
 
@@ -79,7 +76,7 @@ export function Home(){
   
   return(
     <Container>
-      <Header onChange={e => setSearch(e.target.value)}/>
+      <Header isAdmin onChange={e => setSearch(e.target.value)}/>
       <div className="title">
         <div className="imagem"><img src={Imagem} alt="Imagem de macarons" /></div>
         <div className="title-half">
@@ -93,30 +90,29 @@ export function Home(){
         onClickScrollBack={handleScrollBack1}
         onClickScrollFront={handleScrollFront1}
       >
-        {
+         {
           pratoPrincipal.map(item => (
             
-            <MenuCards 
+            <MenuCards
               key={item.id}
               data={item}
-              onClick={() => handleClickDetails(item.id)}
+              onClick={() => handleEditMenu(item.id)}
             />
           ))
         }
-        
       </MenuTypes>
       <MenuTypes 
         title="Sobremesa"
         onClickScrollBack={handleScrollBack2}
         onClickScrollFront={handleScrollFront2}
       >
-      {
+       {
           sobremesa.map(item => (
             
-            <MenuCards 
+            <MenuCards
               key={item.id}
               data={item}
-              onClick={() => handleClickDetails(item.id)}
+              onClick={() => handleEditMenu(item.id)}
             />
           ))
         }
@@ -126,13 +122,13 @@ export function Home(){
         onClickScrollBack={handleScrollBack3}
         onClickScrollFront={handleScrollFront3}
       >
-        {
+         {
           bebida.map(item => (
             
-            <MenuCards 
+            <MenuCards
               key={item.id}
               data={item}
-              onClick={() => handleClickDetails(item.id)}
+              onClick={() => handleEditMenu(item.id)}
             />
           ))
         }

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.button`
   background: ${({theme}) => theme.COLORS.BACKGROUND_CARDS};
+  border: none;
 
   min-width: 300px;
   height: 512px;
@@ -50,10 +51,6 @@ export const Container = styled.div`
 
     }
     }
-    /* h1:hover{
-      transition-duration: 2s;
-      transform: translateX(-260px);
-    } */
   }
 
   p{

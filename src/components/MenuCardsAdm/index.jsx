@@ -1,22 +1,14 @@
-import { useState } from "react";
-
 import { Container } from "./style";
-
-import { api } from "../../services/api";
 
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { TiChevronRight } from "react-icons/ti";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
 
 import { Button } from "../Button";
 
-export function MenuCards({data, onClick, ...rest}){
+export function MenuCardsAdm({data, ...rest}){
 
-  const [quantity, setQuantity] = useState(0);
-  const [favorite, setFavorite] = useState(false);
-
-
-  const pictureUrl = `${api.defaults.baseURL}/files/${data.picture}`;
+  const stringPrice = `R$ ${data.price}, 00`;
 
   const transitionTimePerPixel = 0.01;
 
@@ -52,44 +44,26 @@ export function MenuCards({data, onClick, ...rest}){
     textBox.lastChild.style.transitionDuration = "0.3s";
     textBox.lastChild.style.transform = "translateX(0)";
   };
-  
-  function handleAddQuantity(){
-    setQuantity(quantity + 1);
-  };
-
-  function handleRemoveQuantity(){
-    if(quantity > 0){
-      setQuantity(quantity - 1);
-    };
-  };
-
-  function handleClickFavorite(){
-    if(favorite === false){
-      setFavorite(true);
-    } else {
-      setFavorite(false)
-    };
-  };
 
   return (
     <Container {...rest}>
-      <img src={pictureUrl} alt="Imagem do prato" />
-      <button className="details" onClick={onClick} onMouseEnter={(e) => handleMouseEnter(e)} onMouseLeave={(e) => handleMouseLeave(e)}>
+      <img src={data.picture} alt="Imagem do prato" />
+      <button className="details" onMouseEnter={(e) => handleMouseEnter(e)} onMouseLeave={(e) => handleMouseLeave(e)}>
         <div className="menuName"><h1>{data.name}</h1></div>
         <TiChevronRight size={24}/>
       </button>
       <p>{data.description}</p>
-      <span>{data.price}</span>
+      <span>{stringPrice}</span>
       <div className="buttons">
         <div className="quantity">
-          <button onClick={handleRemoveQuantity}><FiMinus/></button>
-            <>{quantity}</>
-          <button onClick={handleAddQuantity}><FiPlus/></button>
+          <button><FiMinus/></button>
+            <>0</>
+          <button><FiPlus/></button>
         </div>
         <Button title="Incluir" className="incluir"/>
       </div>
-      <button className="favorites" onClick={handleClickFavorite}>
-        {favorite ? <AiFillHeart size={25}/> : <AiOutlineHeart size={25}/>}
+      <button className="favorites">
+        <AiOutlineHeart size={25}/>
       </button>
     </Container>
   );

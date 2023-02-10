@@ -73,8 +73,28 @@ export const Container = styled.div`
   }
 
   .pay{
+
+    .pay-title{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      >button{
+        background: none;
+        border: none;
+
+        color: ${({theme}) => theme.COLORS.COLOR_STRONG};
+        font-size: 16px;
+
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        margin-top: -50px;
+      }
+    }
   
-    >div{
+    .content{
       width: 530px;
       height: 449px;
 
