@@ -17,6 +17,7 @@ Tabela de conteúdos
       * [User Admin](#user-admin)
    * [Demo](#demo)
    * [Prerequisites](#prerequisites)
+   * [Running the Front End](#running-the-front-end)
    * [Running the Back End](#running-the-back-end-server)
    * [Technologies](#technologies)
    * [Author](#author)
