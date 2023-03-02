@@ -90,12 +90,12 @@ This are the technologies used in these project:
 
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105811058?v=4" width="100px;" alt=""/>
 
- <sub><b>Gabriel Stertz 🚀</b></sub>
+ #### **Gabriel Stertz** 🚀
 
 
 Feito com ❤️ por Gabriel Stertz 👋🏽 Entre em contato!
 
-[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gabrielStertz) [![Linkedin Badge](https://img.shields.io/badge/-Thiago-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabrielstertz/)](https://www.linkedin.com/in/gabrielstertz/) 
+[![GitHub](https://img.shields.io/badge/-gabrielStertz-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gabrielStertz) [![Linkedin Badge](https://img.shields.io/badge/-Gabriel-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabrielstertz/)](https://www.linkedin.com/in/gabrielstertz/) 
 [![Gmail Badge](https://img.shields.io/badge/-gabrielStertz2012@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:gabrielstertz2012@gmail.com)](mailto:gabrielstertz2012@gmail.com)
 
 Front-end for a restaurant, with display of the menu in cards, choose your favorites, make orders, a page with details of an item of the menu, a page for you confirm the order and choose payment method and a page to accompany the progress of your order.
