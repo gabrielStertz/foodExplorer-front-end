@@ -8,6 +8,42 @@
 ![Badge](https://img.shields.io/badge/React-v18.2.0-%237159c1?style=plastic)
 ![Badge](https://img.shields.io/badge/Axios-v1.3.0-%237159c1?style=plastic)
 
+Tabela de conteúdos
+=================
+
+   * [Project Status](#project-status)
+   * [Features](#features)
+      * [All users](#all-users)
+      * [User Admin](#user-admin)
+   
+
+
+
+### Project Status
+
+##### :sparkles: Food Explorer ready :checkered_flag:
+
+
+### Features
+
+##### All users
+
+- [x] Register of users
+- [x] Mark favorites
+- [x] Add to orders
+- [x] Confirm orders
+- [x] Choose payment
+- [x] Accompany orders
+
+##### User Admin
+
+- [x] Register of users
+- [x] Register menu items
+- [x] Update menu items
+- [x] Delete menu items
+- [x] Update status of orders
+
+
 Front-end for a restaurant, with display of the menu in cards, choose your favorites, make orders, a page with details of an item of the menu, a page for you confirm the order and choose payment method and a page to accompany the progress of your order.
 
 ### **Sign in** and **Sign up**
