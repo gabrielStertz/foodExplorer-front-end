@@ -18,15 +18,18 @@ Tabela de conteúdos
    * [Demo](#demo)
    * [Prerequisites](#prerequisites)
    * [Running the Back End](#running-the-back-end-server)
-
+   * [Technologies](#technologies)
+   * [Author](#author)
 
 
 ## Project Status
+---
 
 ### :sparkles: Food Explorer ready :checkered_flag:
 
 
 ## Features
+---
 
 ### All users
 
@@ -47,16 +50,19 @@ Tabela de conteúdos
 
 
 ## Demo
+---
 
 ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
 
 ## Prerequisites
+---
 
 Before we start, you will need to have installed this:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
 And is good to have an editor to work with de code [VSCode](https://code.visualstudio.com/)
 
 ## Running the Back End (server)
+---
 
 ```bash
 # Clone este repositório
@@ -76,6 +82,7 @@ $ npm run dev
 
 
 ## Technologies
+---
 
 This are the technologies used in these project:
 
@@ -88,7 +95,7 @@ This are the technologies used in these project:
 ### Author
 ---
 
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105811058?v=4" width="100px;" alt=""/>
+ ![Gabriel]("https://avatars.githubusercontent.com/u/105811058?v=4")
 
  #### **Gabriel Stertz** 🚀
 
