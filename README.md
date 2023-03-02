@@ -5,7 +5,8 @@
 ![Badge](https://img.shields.io/badge/License-MIT-%237159c1?style=for-the-badge&logo=ghost)
 ![Badge](https://img.shields.io/badge/npm-v8.5.5-%237159c1?style=for-the-badge&logo=ghost)
 ![Badge](https://img.shields.io/badge/vite-v4.0.0-%237159c1?style=for-the-badge&logo=ghost)
-![Badge](https://img.shields.io/badge/React-v18.2.0-%237159c1?style=for-the-badge&logo=ghost)
+![Badge](https://img.shields.io/badge/React-v18.2.0-%237159c1?style=plastic&logo=ghost)
+![Badge](https://img.shields.io/badge/Axios-v1.3.0-%237159c1?style=social&logo=ghost)
 
 Front-end for a restaurant, with display of the menu in cards, choose your favorites, make orders, a page with details of an item of the menu, a page for you confirm the order and choose payment method and a page to accompany the progress of your order.
 
