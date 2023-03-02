@@ -95,7 +95,7 @@ This are the technologies used in these project:
 ### Author
 ---
 
- ![Gabriel]("https://avatars.githubusercontent.com/u/105811058?v=4")
+<img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105811058?v=4" alt="Foto Gabriel" width=100px/>
 
  #### **Gabriel Stertz** 🚀
 
