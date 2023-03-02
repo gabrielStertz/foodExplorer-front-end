@@ -82,7 +82,7 @@ This are the technologies used in these project:
 - [![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en/)
 - [![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 - [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://pt-br.reactjs.org/)
-- [Axios](https://axios-http.com/ptbr/docs/intro)
+- [![Axios](https://img.shields.io/badge/Axios-white.svg?style=for-the-badge&logoColor=%23671ddf)](https://axios-http.com/ptbr/docs/intro)
 
 
 ### Author
@@ -95,7 +95,7 @@ This are the technologies used in these project:
 
 Feito com ❤️ por Gabriel Stertz 👋🏽 Entre em contato!
 
-[![GitHub](https://img.shields.io/badge/-gabrielStertz-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gabrielStertz) [![Linkedin Badge](https://img.shields.io/badge/-Gabriel-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabrielstertz/)](https://www.linkedin.com/in/gabrielstertz/) 
+[![GitHub](https://img.shields.io/badge/-Github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gabrielStertz) [![Linkedin Badge](https://img.shields.io/badge/-Gabriel-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabrielstertz/)](https://www.linkedin.com/in/gabrielstertz/) 
 [![Gmail Badge](https://img.shields.io/badge/-gabrielStertz2012@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:gabrielstertz2012@gmail.com)](mailto:gabrielstertz2012@gmail.com)
 
 Front-end for a restaurant, with display of the menu in cards, choose your favorites, make orders, a page with details of an item of the menu, a page for you confirm the order and choose payment method and a page to accompany the progress of your order.
