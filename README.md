@@ -82,7 +82,7 @@ This are the technologies used in these project:
 - [![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en/)
 - [![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 - [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://pt-br.reactjs.org/)
-- [![Axios](https://img.shields.io/badge/Axios-white.svg?style=for-the-badge&logoColor=%23671ddf)](https://axios-http.com/ptbr/docs/intro)
+- [![Axios](https://img.shields.io/badge/Axios-white.svg?style=for-the-badge&logo=ghost&logoColor=%23671ddf)](https://axios-http.com/ptbr/docs/intro)
 
 
 ### Author
