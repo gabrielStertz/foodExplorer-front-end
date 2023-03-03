@@ -1,6 +1,30 @@
-# Food Explorer
+<a name="readme-top"></a>
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
-## Project of the stage **Desafio final - Program Explorer - Rocketseat**
+<br />
+<div align="center">
+  <a style="text-decoration: none" href="https://github.com/gabrielStertz/foodexplorer-front-end">
+    <img src="src/assets/saladaRavanello.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">Food Explorer</h3>
+
+  <p align="center">
+    Project Stage "Desafio Final" - Program Explorer - Rocketseat
+    <br />
+    <br />
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    ·
+    <a href="https://github.com/gabrielStertz/foodexplorer-front-end/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/gabrielStertz/foodexplorer-front-end/issues">Request Feature</a>
+  </p>
+</div>
+
 
 ![Badge](https://img.shields.io/badge/License-MIT-%237159c1?style=plastic)
 ![Badge](https://img.shields.io/badge/npm-v8.5.5-%237159c1?style=plastic)
@@ -8,7 +32,7 @@
 ![Badge](https://img.shields.io/badge/React-v18.2.0-%237159c1?style=plastic)
 ![Badge](https://img.shields.io/badge/Axios-v1.3.0-%237159c1?style=plastic)
 
-Tabela de conteúdos
+Table of Contents
 =================
 
    * [Project Status](#project-status)
@@ -24,9 +48,13 @@ Tabela de conteúdos
    * [License](#license)
 
 
-## Project Status
+## About the Project
 
-### :sparkles: Food Explorer ready :checkered_flag:
+
+
+### Project Status
+
+#### :sparkles: Food Explorer ready :checkered_flag:
 
 
 ## Features
@@ -147,3 +175,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+[forks-shield]: https://img.shields.io/github/forks/gabrielStertz/foodexplorer-front-end.svg?style=for-the-badge
+[forks-url]: https://github.com/gabrielStertz/foodexplorer-front-end/network/members
+[stars-shield]: https://img.shields.io/github/stars/gabrielStertz/foodexplorer-front-end.svg?style=for-the-badge
+[stars-url]: https://github.com/gabrielStertz/foodexplorer-front-end/stargazers
+[issues-shield]: https://img.shields.io/github/issues/gabrielStertz/foodexplorer-front-end.svg?style=for-the-badge
+[issues-url]: https://github.com/gabrielStertz/foodexplorer-front-end/issues
+[license-shield]: https://img.shields.io/github/license/gabrielStertz/foodexplorer-front-end.svg?style=for-the-badge
+[license-url]: https://github.com/gabrielStertz/foodexplorer-front-end/blob/main/LICENSE.txt
