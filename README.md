@@ -59,11 +59,7 @@
 
 ## About the Project
 
-This project is for the final stage of the program **Explorer** of the [Rocketseat](https://rocketseat.com.br) platform, where we learned how create Front and Back end, using Javascript, React and others development tools.
-
-### Project Status
-
-#### :sparkles: Food Explorer ready :checkered_flag:
+This project is for the final stage of the program **Explorer** of the [Rocketseat](https://rocketseat.com.br) platform, where we learned how to create Front and Back end, using Javascript, React and others development tools.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -133,6 +129,13 @@ $ npm run dev
 # the server will run in localhost:3333
 ```
 
+#### The last command will create an User Admin:
+
+>
+> #### **e-mail:** gabriel@gmail.com
+>
+> #### **password:** 123
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -140,27 +143,35 @@ $ npm run dev
 
 ### All users
 
-- [x] Register of users
-- [x] Mark favorites
-- [x] Add to orders
-- [x] Confirm orders
-- [x] Choose payment
-- [x] Accompany orders
+- [x] Users
+  - [x] Register of users
+- [x] Favorites
+  - [x] Mark favorites
+- [x] Orders
+  - [x] Add to orders
+  - [x] Confirm orders
+  - [x] Choose payment
+  - [x] Accompany orders
 
 ### User Admin
 
-- [x] Register of users
-- [x] Register menu items
-- [x] Update menu items
-- [x] Delete menu items
-- [x] Update status of orders
+- [ ] Users
+  - [x] Register of users
+  - [ ] Manage users
+   - [ ] Add Admin
+- [x] Menu  
+  - [x] Register menu items
+  - [x] Update menu items
+  - [x] Delete menu items
+- [x] Orders  
+  - [x] Update status of orders
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See [LICENSE.txt](https://github.com/gabrielStertz/foodexplorer-front-end/blob/main/LICENSE.txt) for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -188,6 +199,7 @@ I would like to acknowledge the help of the following:
 * [MDN Web Docs](https://developer.mozilla.org/pt-BR/)
 * [Google Fonts](https://fonts.google.com)
 * [React Icons](https://react-icons.github.io/react-icons/search)
+* [Visual Studio Code](https://code.visualstudio.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
