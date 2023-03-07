@@ -41,6 +41,7 @@
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
         <li><a href="#running-the-back-end-server-for-this-project">Running the Back End (server) for this project</a></li>
+        <li><a href="#admin-account">Admin account</a></li>
       </ul>
     </li>
     <li>
