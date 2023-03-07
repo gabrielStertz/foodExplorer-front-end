@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Container } from "./style";
 
 import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { TiChevronRight } from "react-icons/ti";
@@ -15,6 +16,7 @@ export function MenuCards({data, onClick, ...rest}){
   const [quantity, setQuantity] = useState(0);
   const [favorite, setFavorite] = useState(false);
 
+  const { addOrder, signOut } = useAuth();
 
   const pictureUrl = `${api.defaults.baseURL}/files/${data.picture}`;
 
@@ -62,14 +64,53 @@ export function MenuCards({data, onClick, ...rest}){
       setQuantity(quantity - 1);
     };
   };
-
-  function handleClickFavorite(){
+  async function handleClickFavorite(id){
     if(favorite === false){
       setFavorite(true);
-    } else {
-      setFavorite(false)
+      await api.post(`/favorites/${id}`);
+    } else if(favorite === true) {
+      setFavorite(false);
+      await api.delete(`/favorites/${id}`);
     };
   };
+
+  function handleIncludeOrder(id){
+    for(let i = 0; i < quantity; i++){
+      addOrder(id);
+    };
+  };
+
+  useEffect(() => {
+    async function fetchFavorites(){
+      try {
+        const response = await api.get("/favorites");
+        const favorites = response.data;
+
+        favorites.map(item => {
+          if(item.id === data.id){
+            setFavorite(true);
+          };
+        });
+        
+      } catch (error) {
+        if(error.response.data.message === "JWT Token inválido"){
+          signOut();
+        } else {
+          if(error.response){
+            alert(error.response.data.message);
+          } else {
+            alert("Não foi possível acessar");
+          };
+        };  
+      };
+
+      
+    };
+
+    fetchFavorites();
+    
+  }, []);
+
 
   return (
     <Container {...rest}>
@@ -86,9 +127,9 @@ export function MenuCards({data, onClick, ...rest}){
             <>{quantity}</>
           <button onClick={handleAddQuantity}><FiPlus/></button>
         </div>
-        <Button title="Incluir" className="incluir"/>
+        <Button onClick={() => handleIncludeOrder(data.id)} title="Incluir" className="incluir"/>
       </div>
-      <button className="favorites" onClick={handleClickFavorite}>
+      <button className="favorites" onClick={() => handleClickFavorite(data.id)}>
         {favorite ? <AiFillHeart size={25}/> : <AiOutlineHeart size={25}/>}
       </button>
     </Container>

@@ -1,9 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import { Container } from "./style";
 
 import { api } from "../../services/api";
+
+import { useAuth } from "../../hooks/auth";
 
 import { FiChevronLeft, FiDownload } from "react-icons/fi";
 
@@ -22,8 +24,13 @@ export function AddMenu(){
   const [newIngredient, setNewIngredient] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  const [isAdd, setIsAdd] = useState(true);
 
   const navigate = useNavigate();
+
+  const { signOut } = useAuth();
+
+  const params = useParams();
 
   function handleAddIngredient(){
     setIngredients(prevState => [...prevState, newIngredient]);
@@ -34,54 +41,152 @@ export function AddMenu(){
     setIngredients(prevState => prevState.filter(ingredient => ingredient !== ingredientDeleted));
   };
 
+  async function fetchMenuItem(){
+    let response;
+    try {
+      response = await api.get(`/menu/${params.id}`);
+        
+    } catch (error) {
+      
+      if(error.response.data.message === "JWT Token inválido"){
+        
+        signOut();
+        navigate("/");
+      } else {
+        if(error.response){
+          alert(error.response.data.message);
+        } else {
+          alert("Não foi possível acessar");
+        };
+      };
+    };
+
+    setName(response.data.name);
+    setType(response.data.type);
+    setIngredients([]);
+    response.data.ingredients.map(ingredient => {
+      setIngredients(prevState => [...prevState, ingredient.name]);
+    });
+    setPrice(response.data.price);
+    setDescription(response.data.description);
+    
+  };
+
+  useEffect(() => {
+    if(params.id){
+      setIsAdd(false);
+
+      fetchMenuItem();
+      
+    };
+  }, []);
+
   async function handleAddMenu(e){
 
+    let menuItem;
+    let menu_id;
+
     e.preventDefault();
-    
-    const fileUploadForm = new FormData();
-    
-    fileUploadForm.append("picture", picture);
     
     
     if(!name || !type || !ingredients || !price || !description){
       return alert("Preencha todos os campos!");
     };
-
-    const response = await api.post("/menu", { name, type, description, price, ingredients})
-    .then(async () => {
-      
-      const menuItem = await api.get(`/menu?name=${name}`);
-      const menu_id = menuItem.data[0].id;
-      await api.patch(`/menu/picture/${menu_id}`, fileUploadForm);
-    
-    })
-    .then(() => {
-      alert("Prato cadastrado com sucesso!");
-      setPicture(null);
-      setName("");
-      setType("Prato principal");
-      setIngredients([]);
-      setPrice("");
-      setDescription("");
-    })
-    .catch(error => {
-      if(error.response){
-        alert(error.response.data.message);
-      } else {
-        alert("Não foi possível cadastrar");
+    if(isAdd){
+      if(!picture){
+        return alert("Adicione uma imagem para o prato");
       };
-    });
+    };
+    if(newIngredient){
+      return alert("Há um ingrediente que não foi adicionado.");
+    };
+    
+      const fileUploadForm = new FormData();
+    
+      fileUploadForm.append("picture", picture);
+    
+    
+
+    if(isAdd){
+      
+      await api.post("/menu", { name, type, description, price, ingredients})
+      .then(async () => {
+        
+          menuItem = await api.get(`/menu?name=${name}`);
+          menu_id = menuItem.data[0].id;
+          await api.patch(`/menu/picture/${menu_id}`, fileUploadForm);
+        
+      })
+      .then(() => {
+        alert("Prato cadastrado com sucesso!");
+        setPicture(null);
+        setName("");
+        setType("Prato principal");
+        setIngredients([]);
+        setPrice("");
+        setDescription("");
+      })
+      .catch(error => {
+        if(error.response){
+          alert(error.response.data.message);
+        } else {
+         alert("Não foi possível cadastrar");
+        };
+      });
+    } else {
+      await api.patch(`/menu/${params.id}`, { name, type, description, price, ingredients})
+      .then(async () => {
+        if(picture){
+          menuItem = await api.get(`/menu?name=${name}`);
+          menu_id = menuItem.data[0].id;
+          await api.patch(`/menu/picture/${menu_id}`, fileUploadForm);
+        }  
+      })
+      .then(() => {
+        alert("Prato Editado com sucesso");
+        navigate(-1);
+      })
+      .catch(error => {
+        if(error.response){
+          alert(error.response.data.message);
+        } else {
+         alert("Não foi possível cadastrar");
+        };
+      });
+    };
+  };
+
+  async function handleDelete(e){
+    e.preventDefault();
+    
+    const confirm = window.confirm("Deseja realmente excluir o prato?");
+
+    if(confirm){
+
+      try {
+        await api.delete(`/menu/${params.id}`);
+        
+      } catch (error) {
+        if(error.response){
+          alert(error.response.data.message);
+        } else {
+         alert("Não foi possível cadastrar");
+        };
+      };
+    };
+    alert("Prato excluído com sucesso");
+    navigate(-1);
   };
 
   function handleBack(){
-    navigate("/");
+    navigate(-1);
   };
 
   return (
     <Container>
       <Header isAdmin/>
       <button id="back" onClick={handleBack}><FiChevronLeft size={16}/> voltar</button>
-      <h1>Editar prato</h1>
+      <h1>{isAdd ? "Adicionar prato" : "Editar prato"}</h1>
       <form>
         <div className="picture-name-type">
           <div className="picture-item">
@@ -162,7 +267,8 @@ export function AddMenu(){
           </div>
         </div>
         <div className="button">
-          <button id="add" onClick={e => handleAddMenu(e)}>Adicionar pedido</button>
+          {!isAdd ? <button onClick={e => handleDelete(e)}>Excluir prato</button> : <div/>}
+          <button id="add" onClick={e => handleAddMenu(e)}>{isAdd ? "Adicionar prato" : "Editar prato"}</button>
         </div>
       </form>
       <Footer/>

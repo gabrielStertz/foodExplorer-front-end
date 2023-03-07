@@ -7,7 +7,7 @@ import { GiKnifeFork } from "react-icons/gi";
 
 import { Button } from "../Button";
 
-export function PayInfo({isPix, isCredit, isPayed, delivered, ...rest}){
+export function PayInfo({isPix, isCredit, isPaid, delivered, ...rest}){
 
   if(delivered){
     return (
@@ -18,7 +18,7 @@ export function PayInfo({isPix, isCredit, isPayed, delivered, ...rest}){
         </div>
       </Container>
     );
-  } else if(isPayed){
+  } else if(isPaid){
     return (
       <Container>
         <div className="wait">

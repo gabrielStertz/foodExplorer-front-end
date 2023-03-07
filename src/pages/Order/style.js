@@ -26,49 +26,50 @@ export const Container = styled.div`
     font-size: 20px;
   }
 
+  .order-items{
+    height: 430px;
+
+    /* padding-right: 100px; */
+
+    overflow-y: auto;
+  }
+
   .order{
-    img{
-      width: 100px;
-      height: 100px;
+    width: 100%;
+
+    padding-right: 30px;
+
+    h1{
+      margin-top: 5px;
     }
+    >button{
+        background: none;
+        border: none;
 
-    .item{
-      display: flex;
-      align-items: center;
+        color: ${({theme}) => theme.COLORS.COLOR_STRONG};
+        font-size: 20px;
 
-      margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
 
-      >div{
-        margin-left: 15px;
-
-        >div{
-          display: flex;
-          align-items: center;
-
-          >P{
-            color: ${({theme}) => theme.COLORS.COLOR_STRONG};
-
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            font-size: 20px;
-          }
-
-          >span{
-            color: ${({theme}) => theme.COLORS.COLOR_MEDIUM};
-
-            font-size: 12px;
-
-            margin-left: 10px;
-          }
-        }
-        >button{
-          color: #ab4d55;  
-
-          background: none;
-          border: none;
-
-        }
+        margin-top: 5px;
       }
+    
+  }
+
+  .total-confirm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    >button{
+      width: 180px;
+
+      font-size: 16px;
+    }
+    >button:disabled{
+      opacity: 0.5;
     }
   }
 
@@ -84,13 +85,13 @@ export const Container = styled.div`
         border: none;
 
         color: ${({theme}) => theme.COLORS.COLOR_STRONG};
-        font-size: 16px;
+        font-size: 20px;
 
         display: flex;
         align-items: center;
         gap: 5px;
 
-        margin-top: -50px;
+        margin-top: -80px;
       }
     }
   
@@ -120,13 +121,6 @@ export const Container = styled.div`
           border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .pix{
-
-          svg{
-            width: 70px;
-            height: 40px;
-          }
-        }
       }
 
       .pay-info{

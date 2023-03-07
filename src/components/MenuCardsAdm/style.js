@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
+export const Container = styled.div`
   background: ${({theme}) => theme.COLORS.BACKGROUND_CARDS};
-  border: none;
 
   min-width: 300px;
+  max-width: 300px;
   height: 512px;
 
   display: flex;

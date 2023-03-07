@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   
   padding: 107px 123px 77px;
+
   .title{
     display: flex;
     align-items: center;
@@ -36,7 +37,7 @@ export const Container = styled.div`
   }
   table{
     width: 100%;
-    
+    table-layout: fixed;
     border-collapse: collapse;
   }
   
@@ -44,45 +45,36 @@ export const Container = styled.div`
     height: 54px;
   }
   th{
+    color: ${({theme}) => theme.COLORS.COLOR_STRONG};
     padding-left: 15px;
 
     font-size: 14px;
-  }
-  th{
-    color: ${({theme}) => theme.COLORS.COLOR_STRONG};
-
     text-align: left;
   }
 
-  td{
-    
-    >button{
-      width: 100%;
-      height: 54px;
-      
-      color: ${({theme}) => theme.COLORS.COLOR_MEDIUM};
-      background: none;
-      border: none;
+td{
+  
+  color: ${({theme}) => theme.COLORS.COLOR_MEDIUM};
 
-      font-size: 14px;
-      text-align: left;
-      padding-left: 15px;
-    }
-  }
+  font-size: 14px;
+  text-align: left;
 
-  th:nth-child(1){
-    width: 150px;
-  }
-  th:nth-child(2){
-    width: 150px;
-  }
-  th:nth-child(4){
-    width: 130px;
-  }
+  padding-left: 15px;
+}
 
-  td:first-child{
-    >button span{
-      margin-left: 10px;
-    }
-  }
+th:nth-child(1){
+  width: 150px;
+  white-space: nowrap;
+}
+th:nth-child(2){
+  width: 150px;
+  white-space: nowrap;
+}
+th:nth-child(3){
+  white-space: nowrap;
+}
+th:nth-child(4){
+  width: 150px;
+  white-space: nowrap;
+}
 `;

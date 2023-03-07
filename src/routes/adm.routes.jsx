@@ -11,7 +11,7 @@ export function AdmRoutes(){
       <Route path="/" element={<HomeAdmin/>}/>
       <Route path="/orders" element={<OrdersAdmin/>}/>
       <Route path="/add" element={<AddMenu/>}/>
-      {/* <Route path="/add" element={<AddMenu/>}/> */}
+      <Route path="/add/:id" element={<AddMenu/>}/>
     </Routes>
   );
 };

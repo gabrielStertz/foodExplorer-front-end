@@ -11,27 +11,32 @@ import { FiChevronLeft } from "react-icons/fi";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-import { TableRowAdmin } from "../../components/TableRowAdmin";
+import { TableRow } from "../../components/TableRow";
 
-export function OrdersAdmin(){
-
-  const [orders, setOrders] = useState([]);
+export function OrdersHistoric(){
 
   const navigate = useNavigate();
 
-  const { signOut } = useAuth();
+  const { signOut, order } = useAuth();
 
-  
+  const [orders, setOrders] = useState([]);
+
   function handleBack(){
-    navigate(-1);
+    if(order.length === 0){
+      navigate("/");
+    } else {
+      navigate(-1);
+    };
   };
 
   useEffect(() => {
+    
     async function fetchOrders(){
-      
       try {
-        await api.get("/orders-admin")
-        .then(res => setOrders(res.data));
+        const response = await api.get("/orders")
+        
+        setOrders(response.data);
+        
       } catch (error) {
         if(error.response.data.message === "JWT Token inválido"){
           signOut();
@@ -43,18 +48,18 @@ export function OrdersAdmin(){
             alert("Não foi possível acessar");
           };
         };
-      };
+      }
     };
 
     fetchOrders();
   }, []);
-
+  
   return (
     <Container>
-      <Header isAdmin/>
-      <div className="title">
+      <Header/>
+      <div className="title">  
         <h1>Pedidos</h1>
-        <button onClick={handleBack}><FiChevronLeft size={20}/>Voltar</button>
+        <button className="back" onClick={handleBack}><FiChevronLeft size={20}/>Voltar</button>
       </div>
         <table>
           <thead>
@@ -67,17 +72,13 @@ export function OrdersAdmin(){
           </thead>
           <tbody>
             {
-              orders &&
               orders.map(order => (
-                <TableRowAdmin 
-                  key={String(order.id)}
-                  data={order}
-                />
+                <TableRow key={String(order.id)} data={order}/>
+            
               ))
             }
-            </tbody>  
-        </table>        
-
+          </tbody>  
+        </table>
       <Footer/>
     </Container>
   );

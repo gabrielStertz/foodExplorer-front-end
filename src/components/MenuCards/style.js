@@ -4,6 +4,7 @@ export const Container = styled.div`
   background: ${({theme}) => theme.COLORS.BACKGROUND_CARDS};
 
   min-width: 300px;
+  max-width: 300px;
   height: 512px;
 
   display: flex;
@@ -50,10 +51,6 @@ export const Container = styled.div`
 
     }
     }
-    /* h1:hover{
-      transition-duration: 2s;
-      transform: translateX(-260px);
-    } */
   }
 
   p{

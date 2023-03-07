@@ -215,9 +215,9 @@ export const Container = styled.div`
     width: 100%;
 
     display: flex;
-    justify-content: end;
+    justify-content: ${({isAdd}) => isAdd ? "flex-end" : "space-between"};
 
-    button#add{
+    button{
       width: 357px;
       height: 48px;
 
@@ -229,7 +229,7 @@ export const Container = styled.div`
 
       font-family: 'Poppins', sans-serif;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 16px;
     }
   }  
 `;
