@@ -66,7 +66,8 @@ export function Order(){
 
   async function handleOrderConfirmation(){
     const response = await api.post("/orders", { order_menu_list: order });
-    addOrderId(response.data.orders_id[0]);
+    
+    addOrderId(response.data.order_id[0]);
     addOrderConfirmation();
     setIsPaymentDisabled(false);
   };
