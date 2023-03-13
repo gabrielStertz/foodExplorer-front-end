@@ -7,7 +7,7 @@
 
 <br />
 <div align="center">
-  <a style="text-decoration: none" href="https://github.com/gabrielStertz/foodexplorer-front-end">
+  <a style="text-decoration: none" target="_blank" href="https://github.com/gabrielStertz/foodexplorer-front-end">
     <img src="src/assets/saladaRavanello.png" alt="Logo" width="100" height="100">
   </a>
 
