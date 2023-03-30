@@ -16,7 +16,7 @@ export function MenuCards({data, onClick, ...rest}){
   const [quantity, setQuantity] = useState(0);
   const [favorite, setFavorite] = useState(false);
 
-  const { addOrder, signOut } = useAuth();
+  const { addOrder, signOut, isDarkModeOn } = useAuth();
 
   const pictureUrl = `${api.defaults.baseURL}/files/${data.picture}`;
 
@@ -113,7 +113,7 @@ export function MenuCards({data, onClick, ...rest}){
 
 
   return (
-    <Container {...rest}>
+    <Container className={isDarkModeOn ? "dark" : "light"} {...rest}>
       <img src={pictureUrl} alt="Imagem do prato" />
       <button className="details" onClick={onClick} onMouseEnter={(e) => handleMouseEnter(e)} onMouseLeave={(e) => handleMouseLeave(e)}>
         <div className="menuName"><h1>{data.name}</h1></div>

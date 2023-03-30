@@ -24,12 +24,24 @@ export function Order(){
   const [isOrderHistoricDisabled, setIsOrderHistoricDisabled] = useState(true);
   const [isDelivered, setIsDelivered] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
+  const [canGoBack, setCanGoBack] = useState(false);
   const [orderData, setOrderData] = useState([]);
   const [total, setTotal] = useState("");
 
   const navigate = useNavigate();
 
-  const { order, clearOrder, signOut, storedOrderConfirmed, addOrderConfirmation, removeOrderConfirmation, orderId, addOrderId, removeOrderId } = useAuth();
+  const { 
+    order, 
+    clearOrder, 
+    signOut, 
+    storedOrderConfirmed, 
+    addOrderConfirmation, 
+    removeOrderConfirmation, 
+    orderId, 
+    addOrderId, 
+    removeOrderId, 
+    isDarkModeOn 
+  } = useAuth();
   
   async function handleClickPix(){
     setPix(true);
@@ -37,9 +49,10 @@ export function Order(){
     
     setIsPaymentDisabled(true);
     setTimeout(() => {
+      setCanGoBack(false);
       setIsPaid(true);
       setIsOrderHistoricDisabled(false);
-    }, 10000);
+    }, 1000);
   };
 
   async function handleClickCredit(){
@@ -47,10 +60,12 @@ export function Order(){
     setCredit(true);
     
     setIsPaymentDisabled(true);
-    setTimeout(() => {
+  };
+
+  function handleClickPayCredit(){
+      setCanGoBack(false);
       setIsPaid(true);
       setIsOrderHistoricDisabled(false);
-    }, 10000);
   };
 
   function handleOrderHistoric(){
@@ -58,9 +73,11 @@ export function Order(){
   };
 
   function handleBack(){
-    clearOrder();
-    removeOrderConfirmation();
-    removeOrderId();
+    if(storedOrderConfirmed){
+      clearOrder();
+      removeOrderConfirmation();
+      removeOrderId();
+    };
     navigate("/");
   };
 
@@ -70,6 +87,7 @@ export function Order(){
     addOrderId(response.data.order_id[0]);
     addOrderConfirmation();
     setIsPaymentDisabled(false);
+    setCanGoBack(true);
   };
 
   async function verifyOrderStatus(){
@@ -80,7 +98,7 @@ export function Order(){
       if(order.data.status === "Entregue"){
         setIsDelivered(true);
       };
-      if(orderPaid.data[0].paid === "true"){
+      if(orderPaid.data.paid === "true"){
         setIsPaid(true);
         setIsPaymentDisabled(true);
       };
@@ -143,52 +161,60 @@ export function Order(){
   }, [order]);
 
   return (
-    <Container>
+    <Container className={isDarkModeOn ? "dark" : "light"}>
       <Header/>
-      <div className="geral">
-        <div className="order">
-          <button onClick={handleBack}><FiChevronLeft/>Voltar</button>
-          <h1>Meu pedido</h1>
-          <div className="order-items">
-            {
-              orderData.map((item, index) => (
-                <OrderItem 
-                  key={String(index)}
-                  data={item}
+      <main>
+        <div className="buttons-back-orderHistoric">
+          <button disabled={canGoBack} onClick={handleBack}><FiChevronLeft/>Voltar</button>
+          <button disabled={isOrderHistoricDisabled} onClick={handleOrderHistoric}>Acompanhar pedido<FiChevronRight/></button>
+        </div>
+        <div className="geral">
+          <div className="order">
+          <div className="order-title">
+            <h1>Meu pedido</h1>
+          </div>
+          <div className="order-body">
+              <div className="order-items">
+                {
+                  orderData.map((item, index) => (
+                    <OrderItem 
+                      key={String(index)}
+                      data={item}
+                    />
+                  ))
+                }
+              </div>
+              <div className="total-confirm">
+                <p className="total">{`Total: R$ ${total}`}</p>
+                <Button
+                  title={storedOrderConfirmed ? "Pedido confirmado" : "Confirmar pedido"}
+                  onClick={handleOrderConfirmation}
+                  disabled={storedOrderConfirmed}
                 />
-              ))
-            }
+              </div>
+            </div>  
           </div>
-          <div className="total-confirm">
-            <p className="total">{`Total: R$ ${total}`}</p>
-            <Button
-              title={storedOrderConfirmed ? "Pedido confirmado" : "Confirmar pedido"}
-              onClick={handleOrderConfirmation}
-              disabled={storedOrderConfirmed}
-            />
-          </div>
-        </div>
-        <div className="pay">
-          <div className="pay-title">
+          <div className="pay">
             <h1>Pagamento</h1>
-            <button disabled={isOrderHistoricDisabled} onClick={handleOrderHistoric}>Acompanhar pedido<FiChevronRight/></button>
-          </div>
-          <div className="content">
-            <div className="pay-metod">
-              <button disabled={isPaymentDisabled} className="pix" onClick={handleClickPix} style={{background: pix ? "rgba(255, 255, 255, 0.05)" : "transparent"}}>
-                <Pix/>
-              </button>
-              <button disabled={isPaymentDisabled} onClick={handleClickCredit} style={{background: credit ? "rgba(255, 255, 255, 0.05)" : "transparent"}}>
-                <AiOutlineCreditCard size={20} color="#ffffff"/>
-                 Crédito
-              </button>
-            </div>
-            <div className="pay-info">
-              <PayInfo delivered={isDelivered} isPaid={isPaid} isPix={pix} isCredit={credit}/>
+            <div className="pay-box">
+              <div className="content">
+                <div className="pay-method">
+                  <button disabled={isPaymentDisabled} className="pix" onClick={handleClickPix} style={{background: pix ? "rgba(255, 255, 255, 0.05)" : "transparent"}}>
+                    <Pix/>
+                  </button>
+                  <button disabled={isPaymentDisabled} onClick={handleClickCredit} style={{background: credit ? "rgba(255, 255, 255, 0.05)" : "transparent"}}>
+                    <AiOutlineCreditCard size={20}/>
+                    Crédito
+                  </button>
+                </div>
+                <div className="pay-info">
+                  <PayInfo onClick={handleClickPayCredit} delivered={isDelivered} isPaid={isPaid} isPix={pix} isCredit={credit}/>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </main>
       <Footer/>
     </Container>
   );

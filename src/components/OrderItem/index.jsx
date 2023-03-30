@@ -6,12 +6,12 @@ import { useAuth } from "../../hooks/auth";
 
 export function OrderItem({data}){
 
-  const { removeOrder } = useAuth();
+  const { removeOrder, isDarkModeOn } = useAuth();
 
   const pictureUrl = `${api.defaults.baseURL}/files/${data.picture}`;
 
   return (
-    <Container>
+    <Container className={isDarkModeOn ? "dark" : "light"}>
       <img src={pictureUrl} alt="Imagem do prato" />
       <div>
         <div>

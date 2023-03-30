@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 import { Container } from "./style";
 
+import { useAuth } from "../../hooks/auth";
+
 import { api } from "../../services/api";
 
 export function TableRowAdmin({ data }){
@@ -10,6 +12,8 @@ export function TableRowAdmin({ data }){
   const [menuList, setMenuList] = useState("");
   const [dateTime, setDateTime] = useState("");
   const [status, setStatus] = useState("");
+
+  const { isDarkModeOn } = useAuth();
 
   function handleCode(){
     
@@ -36,10 +40,15 @@ export function TableRowAdmin({ data }){
   };
     
   async function handleSelect(e){
+
+    const paid = "true";
    
     setStatus(e.target.value)
     try {
       await api.put(`/orders-admin/${data.id}`, { status: e.target.value });
+      if(e.target.value === "Preparando"){
+        await api.put(`/order-payment/${data.id}`, { paid });
+      };
     } catch (error) {
       if(error.response){
         alert(error.response.data.message);
@@ -58,7 +67,7 @@ export function TableRowAdmin({ data }){
   }, []);
 
   return(
-    <Container>
+    <Container className={isDarkModeOn ? "dark" : "light"}>
       <td>
         <div className={status} id="select">
           <select id="select-standard" defaultValue={data.status} onChange={e => handleSelect(e)}>

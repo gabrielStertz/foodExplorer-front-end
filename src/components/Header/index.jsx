@@ -5,8 +5,6 @@ import { Container } from "./style";
 
 import { useAuth } from "../../hooks/auth";
 
-import { api } from "../../services/api";
-
 import { FiSearch, FiLogOut } from "react-icons/fi";
 import { TfiReceipt } from "react-icons/tfi";
 
@@ -17,9 +15,9 @@ export function Header({isAdmin, onChange, onClick, favorites = false}){
 
   const navigate = useNavigate();
 
+  const { signOut, order, clearOrder, isDarkModeOn } = useAuth();
+  
   const [orderQuantity, setOrderQuantity] = useState(0);
-
-  const { signOut, order, clearOrder } = useAuth();
 
   function handleClickOrders(){
 
@@ -51,7 +49,7 @@ export function Header({isAdmin, onChange, onClick, favorites = false}){
   if(isAdmin){
     return (
       <Container>
-        <div className="isAdmin">
+        <div className={isDarkModeOn ? "isAdmin principal dark" : "isAdmin principal light"}>
         <div className="logo">
           <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M13.0635 0.306641L25.7096 7.60782V22.2102L13.0635 29.5114L0.417527 22.2102V7.60782L13.0635 0.306641Z" fill="#065E7C"/>
@@ -79,7 +77,7 @@ export function Header({isAdmin, onChange, onClick, favorites = false}){
           className="logOut" 
           onClick={handleLogOut}
         >
-          <FiLogOut size={22}/>
+          <FiLogOut/>
         </button>
         </div>
       </Container>
@@ -87,7 +85,7 @@ export function Header({isAdmin, onChange, onClick, favorites = false}){
   } else {
   return (
     <Container>
-      <div className="isNotAdmin">
+      <div className={isDarkModeOn ? "isNotAdmin principal dark" : "isNotAdmin principal light"}>
       <div className="logo">
         <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.0635 0.306641L25.7096 7.60782V22.2102L13.0635 29.5114L0.417527 22.2102V7.60782L13.0635 0.306641Z" fill="#065E7C"/>

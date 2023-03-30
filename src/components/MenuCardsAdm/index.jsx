@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { Container } from "./style";
 
+import { useAuth } from "../../hooks/auth";
+
 import { api } from "../../services/api";
 
 import { FiPlus, FiMinus } from "react-icons/fi";
@@ -14,6 +16,8 @@ export function MenuCardsAdm({data, onClick, ...rest}){
 
   const [quantity, setQuantity] = useState(0);
   const [favorite, setFavorite] = useState(false);
+
+  const { isDarkModeOn } = useAuth();
 
   const pictureUrl = `${api.defaults.baseURL}/files/${data.picture}`;
 
@@ -70,7 +74,7 @@ export function MenuCardsAdm({data, onClick, ...rest}){
   };
 
   return (
-    <Container {...rest}>
+    <Container className={isDarkModeOn ? "dark" : "light"} {...rest}>
       <img src={pictureUrl} alt="Imagem do prato" />
       <button className="details" onClick={onClick} onMouseEnter={(e) => handleMouseEnter(e)} onMouseLeave={(e) => handleMouseLeave(e)}>
         <div className="menuName"><h1>{data.name}</h1></div>

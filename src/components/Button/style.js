@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
-  width: 100%;
-  height: 48px;
+  
+  height: clamp(3rem, 2.5rem + 1vw, 4.8rem);
 
   background-color: ${({theme}) => theme.COLORS.RED};
   color: #ffffff;
@@ -15,8 +15,8 @@ export const Container = styled.button`
   border: none;
   border-radius: 5px;
 
-  padding: 12px 0;
+  padding: 12px;
 
-  font-size: 14px;
+  font-size: clamp(1rem, 0.8rem + 1vw, 1.4rem);
   font-weight: 500;
 `;

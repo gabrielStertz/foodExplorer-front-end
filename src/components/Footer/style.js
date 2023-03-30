@@ -1,23 +1,22 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
-  height: 77px;
+  
+  grid-area: footer;
 
-  background: ${({theme}) => theme.COLORS.BACKGROUND_ELEMENTS};
+  background: var(--bg-elements-dark);
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 10;
-  position: fixed;
-  left: 0;
-  bottom: 0;
 
-  padding: 24px 123px;
+  padding-top: clamp(0.8rem, 0.6rem + 1vw, 2rem);
+  padding-bottom: clamp(0.8rem, 0.6rem + 1vw, 2rem);
+  padding-left: clamp(0.5rem, 0.4rem + 5vw, 12.3rem);
+  padding-right: clamp(0.5rem, 0.4rem + 5vw, 12.3rem);
 
   .logo {
-    width: 190px;
+    width: fit-content;
 
     display: flex;
     align-items: center;
@@ -25,11 +24,16 @@ export const Container = styled.div`
     flex-wrap: nowrap;
 
     >p {
-      font-size: 25px;
+      font-size: clamp(1rem, 0.2rem + 3vw, 2.5rem);
       font-weight: 700;
     }  
 
     color: ${({theme}) => theme.COLORS.COLOR_LIGHT};
+
+    >svg{
+      width: clamp(1.5rem, 0.5rem + 4vw, 2.6rem);
+      height: clamp(2.2rem, 0.5rem + 4vw, 3rem);
+    }
 
     >svg path{
       fill: ${({theme}) => theme.COLORS.COLOR_LIGHT};
@@ -40,10 +44,25 @@ export const Container = styled.div`
     color: ${({theme}) => theme.COLORS.COLOR_LIGHT};
 
     font-family: "DM Sans", sans-serif;
-    font-size: 14px;
+    font-size: clamp(0.3rem, 0.3rem + 1vw, 1.4rem);
 
     display: flex;
     align-items: center;
     gap: 8px;
+  }
+
+  @media(min-width: 700px){
+    padding-left: clamp(0.5rem, 0.4rem + 10vw, 12.3rem);
+    padding-right: clamp(0.5rem, 0.4rem + 10vw, 12.3rem);
+  }
+  
+  &.light{
+    background-color: var(--bg-elements-light);
+
+    .logo{
+      p{
+        color: var(--fc-light-dark);
+      }
+    }
   }
 `;

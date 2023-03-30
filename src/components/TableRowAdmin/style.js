@@ -1,37 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.tr`
-  height: 54px;
-  
-  td{
-    
-    color: ${({theme}) => theme.COLORS.COLOR_MEDIUM};
-    border: 1px solid ${({theme}) => theme.COLORS.COLOR_LIGHT};
 
-    font-size: 14px;
-    text-align: left;
-
-    padding: 0 15px 0 15px;
-  }
-
-td:nth-child(1){
-  width: 150px;
-  white-space: nowrap;
-}
 td:nth-child(2){
-  width: 150px;
-  white-space: nowrap;
+  display: none;
 }
 td:nth-child(3){
   overflow: scroll;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-td:nth-child(4){
-  width: 150px;
-  white-space: nowrap;
-}
-
 
 td:first-child{
     
@@ -46,8 +24,8 @@ td:first-child{
 
       background-color: transparent;
       border: none;
-      padding: 0 1em 0 0;
-      margin: 0 0 0 20px;
+      padding: 0 1rem 0 0;
+      margin: 0 0 0 2rem;
       width: 100%;
       height: inherit;
       font-family: inherit;
@@ -60,10 +38,9 @@ td:first-child{
 
     #select {
       width: 100%;
-      height: 52px;
+      height: 100%;
       padding: 0.25em 0.5em;
-      font-size: 14px;
-      color: ${({theme}) => theme.COLORS.COLOR_MEDIUM};
+      color: var(--fc-medium-dark);
       cursor: pointer;
       line-height: 1.1;
       background-color: transparent;
@@ -85,7 +62,7 @@ td:first-child{
       content: "";
       width: 0.8em;
       height: 0.5em;
-      background-color: ${({theme}) => theme.COLORS.COLOR_MEDIUM};
+      background-color: var(--fc-medium-dark);
       clip-path: polygon(100% 0%, 0 0%, 50% 100%);
       justify-self: end;
     }
@@ -119,5 +96,23 @@ td:first-child{
       border: 2px solid ${({theme}) => theme.COLORS.COLOR_STRONG};
     }
  
+  }
+
+  &.light{
+    #select-standard{
+      color: var(--fc-medium-light);
+    }
+    #select{
+      color: var(--fc-medium-light);
+    }
+    td:first-child #select::after{
+      background-color: var(--fc-medium-light);
+    }
+  }
+
+  @media(min-width: 450px){
+    td:nth-child(2){
+      display: table-cell;
+    } 
   }
 `;

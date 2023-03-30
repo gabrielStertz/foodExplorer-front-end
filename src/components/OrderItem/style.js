@@ -5,34 +5,34 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 
   img{
-    width: 90px;
-    height: 90px;
+    width: clamp(7rem, 6.7rem + 1vw, 9rem);
+    height: clamp(7rem, 6.7rem + 1vw, 9rem);
   }
   
   >div{
-    margin-left: 15px;
+    margin-left: clamp(1rem, 0.8rem + 1vw, 1.5rem);
 
     div{
       display: flex;
       align-items: center;
 
       P{
-        color: ${({theme}) => theme.COLORS.COLOR_STRONG};
+        color: var(--fc-strong-dark);
 
         font-family: 'Poppins', sans-serif;
         font-weight: 500;
-        font-size: 20px;
+        font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem);
       }
 
       span{
-        color: ${({theme}) => theme.COLORS.COLOR_MEDIUM};
+        color: var(--fc-medium-dark);
 
-        font-size: 12px;
+        font-size: clamp(0.8rem, 0.8rem + 1vw, 1.2rem);
 
-        margin-left: 10px;
+        margin-left: clamp(0.5rem, 0.3rem + 0.5vw, 1rem);
       }
     }
     button{
@@ -41,6 +41,16 @@ export const Container = styled.div`
       background: none;
       border: none;
 
+    }
+  }
+
+  &.light{
+    p{
+      color: var(--fc-strong-light);
+    }
+
+    span{
+      color: var(--fc-medium-light);
     }
   }
 `;

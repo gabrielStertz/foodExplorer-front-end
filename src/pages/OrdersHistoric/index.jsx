@@ -17,7 +17,7 @@ export function OrdersHistoric(){
 
   const navigate = useNavigate();
 
-  const { signOut, order } = useAuth();
+  const { signOut, order, isDarkModeOn } = useAuth();
 
   const [orders, setOrders] = useState([]);
 
@@ -55,11 +55,12 @@ export function OrdersHistoric(){
   }, []);
   
   return (
-    <Container>
+    <Container className={isDarkModeOn ? "dark" : "light"}>
       <Header/>
+      <main>
       <div className="title">  
         <h1>Pedidos</h1>
-        <button className="back" onClick={handleBack}><FiChevronLeft size={20}/>Voltar</button>
+        <button className="back" onClick={handleBack}><FiChevronLeft/>Voltar</button>
       </div>
         <table>
           <thead>
@@ -79,6 +80,7 @@ export function OrdersHistoric(){
             }
           </tbody>  
         </table>
+        </main>  
       <Footer/>
     </Container>
   );

@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 150px;
-  height: 32px;
+  
+  width: clamp(12rem, 8rem + 6vw, 15rem);
+  min-width: 12rem;
+  height: 80%;
 
   display: flex;
   align-items: center;
@@ -12,9 +14,9 @@ export const Container = styled.div`
 
   border: ${({theme, isNew}) => isNew ? `1px dashed ${theme.COLORS.COLOR_LIGHT}` : 'none'};
 
-  margin: 8px;
+  margin-left: 8px;
   border-radius: 8px;
-  padding-right: 16px;
+  padding-right: clamp(1rem, 1.1rem + 1vw, 1.6rem);
 
   > button{
     border: none;
@@ -25,25 +27,35 @@ export const Container = styled.div`
   }
 
   .button-delete{
-    color: ${({theme}) => theme.COLORS.COLOR_STRONG}
+    color: var(--fc-strong-dark);
   }
 
   .button-add{
-    color: ${({theme}) => theme.COLORS.COLOR_LIGHT}
+    color: var(--fc-light-dark);
   }
 
   > input{
     width: 100%;
 
-    padding: 12px;
+    padding-left: clamp(0.5rem, 0.4rem + 1vw, 1.2rem);
 
-    color: ${({theme}) => theme.COLORS.COLOR_STRONG};
+    color: var(--fc-strong-dark);
     background: transparent;
 
     border: none;
 
     &::placeholder{
-      color: ${({theme}) => theme.COLORS.COLOR_LIGHT};
+      color: var(--fc-light-dark);
+
+      font-size: clamp(1.3rem, 1.1rem + 1vw, 1.6rem);
+    }
+  }
+
+  &.light{
+    background-color: ${({isNew}) => isNew ? 'transparent' : "var(--bg-elements-light)" };
+
+    .button-delete{
+      color: var(--fc-strong-light);
     }
   }
 `;

@@ -30,8 +30,12 @@ export function TableRow({ data }){
   };
   function handleMenu(){
     let orderItems = "";
-    data.menu_list.map(item => {
-      orderItems = orderItems + `1 X ${item.name}, `;
+    data.menu_list.map((item, index) => {
+      if(data.menu_list.length - 1 !== index){
+        orderItems = orderItems + `1 X ${item.name}, `;
+      } else {
+        orderItems = orderItems + `1 X ${item.name}`;
+      };
     });
     setMenuList(orderItems);
   };

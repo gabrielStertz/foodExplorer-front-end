@@ -10,6 +10,7 @@ function AuthProvider({ children }){
   const [order, setOrder] = useState([]);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
   const [orderId, setOrderId] = useState(0);
+  const [isDarkModeOn, setIsDarkModeOn] = useState(true);
 
   async function signIn({ email, password }){
 
@@ -44,6 +45,22 @@ function AuthProvider({ children }){
     setOrder(prevState => [...prevState, id]);
 
     localStorage.setItem("@foodexplorer:order", JSON.stringify(order));
+
+  };
+
+  function turnOffDarkMode(){
+
+    setIsDarkModeOn(false);
+
+    localStorage.setItem("@foodexplorer:darkMode", "false");
+
+  };
+
+  function turnOnDarkMode(){
+
+    setIsDarkModeOn(true);
+
+    localStorage.setItem("@foodexplorer:darkMode", "true");
 
   };
 
@@ -104,6 +121,7 @@ function AuthProvider({ children }){
     const orderLocal = localStorage.getItem("@foodexplorer:order");
     const orderIdLocal = localStorage.getItem("@foodexplorer:order-id");
     const orderConfirmedLocal = localStorage.getItem("@foodexplorer:orderconfirmed");
+    const darkMode = localStorage.getItem("@foodexplorer:darkMode");
 
     if(token && user){
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -112,6 +130,9 @@ function AuthProvider({ children }){
         token,
         user: JSON.parse(user)
       });
+    };
+    if(darkMode !== null){
+      setIsDarkModeOn(JSON.parse(darkMode));
     };
 
     if(orderLocal){
@@ -131,7 +152,7 @@ function AuthProvider({ children }){
   }, []);
 
   return(
-    <AuthContext.Provider value={{ signIn, signOut, addOrder, removeOrder, clearOrder, user: data.user, order, storedOrderConfirmed: orderConfirmed, addOrderConfirmation, removeOrderConfirmation, orderId, addOrderId, removeOrderId }}>
+    <AuthContext.Provider value={{ signIn, signOut, addOrder, removeOrder, clearOrder, user: data.user, order, storedOrderConfirmed: orderConfirmed, addOrderConfirmation, removeOrderConfirmation, orderId, addOrderId, removeOrderId, turnOnDarkMode, turnOffDarkMode, isDarkModeOn }}>
       { children }
     </AuthContext.Provider>
   );

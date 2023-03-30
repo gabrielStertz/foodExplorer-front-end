@@ -19,7 +19,7 @@ export function OrdersAdmin(){
 
   const navigate = useNavigate();
 
-  const { signOut } = useAuth();
+  const { signOut, isDarkModeOn } = useAuth();
 
   
   function handleBack(){
@@ -50,11 +50,12 @@ export function OrdersAdmin(){
   }, []);
 
   return (
-    <Container>
+    <Container className={isDarkModeOn ? "dark" : "light"}>
       <Header isAdmin/>
+      <main>
       <div className="title">
         <h1>Pedidos</h1>
-        <button onClick={handleBack}><FiChevronLeft size={20}/>Voltar</button>
+        <button onClick={handleBack}><FiChevronLeft/>Voltar</button>
       </div>
         <table>
           <thead>
@@ -77,7 +78,7 @@ export function OrdersAdmin(){
             }
             </tbody>  
         </table>        
-
+        </main>      
       <Footer/>
     </Container>
   );

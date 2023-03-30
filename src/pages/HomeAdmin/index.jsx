@@ -6,6 +6,8 @@ import { useAuth } from "../../hooks/auth.jsx";
 
 import { Container} from "./style.js";
 
+import { FiMoon, FiSun } from "react-icons/fi";
+
 import { Header } from "../../components/Header";
 import { MenuTypes } from "../../components/Menu_Types";
 import { MenuCardsAdm } from "../../components/MenuCardsAdm";
@@ -18,13 +20,29 @@ export function HomeAdmin(){
   const [sobremesa, setSobremesa] = useState([]);
   const [bebida, setBebida] = useState([]);
   const [search, setSearch] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
 
   const navigate = useNavigate();
-  const { signOut } = useAuth();
+
+  const { signOut, isDarkModeOn, turnOnDarkMode, turnOffDarkMode } = useAuth();
 
   
   function handleClickEditMenu(id){
     navigate(`/add/${id}`)
+  };
+
+  function verifyDarkMode(){
+    setDarkMode(isDarkModeOn);
+  };
+
+  function handleClickMode(){
+    if(isDarkModeOn){
+      turnOffDarkMode();
+      setDarkMode(false);
+    } else {
+      turnOnDarkMode();
+      setDarkMode(true);
+    };
   };
 
   
@@ -62,6 +80,7 @@ export function HomeAdmin(){
     };
     
     fetchMenu();
+    verifyDarkMode();
   }, [search]);
   
   return(
@@ -69,7 +88,9 @@ export function HomeAdmin(){
       <Header 
         isAdmin
         onChange={e => setSearch(e.target.value)}
-      />
+        />
+      <main className={darkMode ? "main-dark": "main-light"}>
+      <button onClick={handleClickMode} className={darkMode ? "mode dark": "mode light"}>{darkMode ? <FiMoon size={20}/> : <FiSun size={20}/>}{darkMode ? "Dark" : "Light"}</button>
       <div className="title">
         <div className="imagem"><img src={Imagem} alt="Imagem de macarons" /></div>
         <div className="title-half">
@@ -125,6 +146,7 @@ export function HomeAdmin(){
       </MenuTypes>
       }
       </div>
+      </main>
       <Footer/>
     </Container>
   );

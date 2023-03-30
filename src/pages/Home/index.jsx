@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { FiMoon, FiSun } from "react-icons/fi";
+
 import { api } from "../../services/api.js";
 import { useAuth } from "../../hooks/auth.jsx";
 
@@ -20,12 +22,28 @@ export function Home(){
   const [sobremesa, setSobremesa] = useState([]);
   const [bebida, setBebida] = useState([]);
   const [search, setSearch] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
 
   const navigate = useNavigate();
-  const { signOut } = useAuth();
+  
+  const { signOut, isDarkModeOn, turnOnDarkMode, turnOffDarkMode } = useAuth();
 
   function handleClickDetails(id){
     navigate(`/details/${id}`)
+  };
+
+  function verifyDarkMode(){
+    setDarkMode(isDarkModeOn);
+  };
+
+  function handleClickMode(){
+    if(isDarkModeOn){
+      turnOffDarkMode();
+      setDarkMode(false);
+    } else {
+      turnOnDarkMode();
+      setDarkMode(true);
+    };
   };
 
   async function handleMyFavorites(){
@@ -60,8 +78,25 @@ export function Home(){
       let pratoPri;
       let sobre;
       let bebi;
+      
+      let response;
+      
+      try {
+        response = await api.get(`/menu?name=${search}`);
 
-      const response = await api.get(`/menu?name=${search}`);
+      } catch (error) {
+  
+        if(error.response.data.message === "JWT Token inválido"){
+          signOut();
+          navigate("/");
+        } else {
+          if(error.response){
+            alert(error.response.data.message);
+          } else {
+            alert("Não foi possível acessar");
+          };
+        };
+      };
 
       if(favorites.length !== 0){
         
@@ -70,7 +105,7 @@ export function Home(){
         bebi = favorites.filter(item => item.type === "bebida");
   
       } else {
-  
+        
         pratoPri = response.data.filter(item => item.type === "Prato principal");
         sobre = response.data.filter(item => item.type === "Sobremesa");
         bebi = response.data.filter(item => item.type === "bebida");
@@ -82,23 +117,9 @@ export function Home(){
       setBebida(bebi);
       
     };
-    try {
-
-      fetchMenu();
-
-    } catch (error) {
-
-      if(error.response.data.message === "JWT Token inválido"){
-        signOut();
-        navigate("/");
-      } else {
-        if(error.response){
-          alert(error.response.data.message);
-        } else {
-          alert("Não foi possível acessar");
-        };
-      };
-    };    
+    
+    fetchMenu();
+    verifyDarkMode();
 
   }, [search, favorites]);
   
@@ -109,6 +130,8 @@ export function Home(){
         onClick={handleMyFavorites}
         favorites={showFavorites}
       />
+      <main className={darkMode ? "main-dark": "main-light"}>
+      <button onClick={handleClickMode} className={darkMode ? "mode dark": "mode light"}>{darkMode ? <FiMoon size={20}/> : <FiSun size={20}/>}{darkMode ? "Dark" : "Light"}</button>
       <div className="title">
         <div className="imagem"><img src={Imagem} alt="Imagem de macarons" /></div>
         <div className="title-half">
@@ -164,6 +187,7 @@ export function Home(){
       </MenuTypes>
       }
       </div>
+      </main>
       <Footer/>
     </Container>
   );

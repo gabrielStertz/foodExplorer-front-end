@@ -1,5 +1,7 @@
 import { Container } from "./style";
 
+import { useAuth } from "../../hooks/auth";
+
 import { MdOutlineQrCode2, MdOutlineCheckCircleOutline } from "react-icons/md";
 import { FiClock } from "react-icons/fi";
 import { TfiReceipt } from "react-icons/tfi";
@@ -7,7 +9,9 @@ import { GiKnifeFork } from "react-icons/gi";
 
 import { Button } from "../Button";
 
-export function PayInfo({isPix, isCredit, isPaid, delivered, ...rest}){
+export function PayInfo({isPix, isCredit, isPaid, delivered, onClick, ...rest}){
+
+  const { isDarkModeOn } = useAuth();
 
   if(delivered){
     return (
@@ -37,7 +41,7 @@ export function PayInfo({isPix, isCredit, isPaid, delivered, ...rest}){
     );
   } else if(isCredit){
     return (
-      <Container>
+      <Container className={isDarkModeOn ? "dark" : "light"}>
         <div className="credit">
         <form>
           <div className="input">
@@ -54,7 +58,7 @@ export function PayInfo({isPix, isCredit, isPaid, delivered, ...rest}){
               <input type="text" placeholder="000"/>
             </div>
           </div>
-          <Button title="Finalizar pagamento" icon={TfiReceipt}/>
+          <Button onClick={onClick} title="Finalizar pagamento" icon={TfiReceipt}/>
         </form>
         </div>
       </Container>

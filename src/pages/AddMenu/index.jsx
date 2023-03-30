@@ -28,7 +28,7 @@ export function AddMenu(){
 
   const navigate = useNavigate();
 
-  const { signOut } = useAuth();
+  const { signOut, isDarkModeOn } = useAuth();
 
   const params = useParams();
 
@@ -183,8 +183,9 @@ export function AddMenu(){
   };
 
   return (
-    <Container>
+    <Container className={isDarkModeOn ? "dark" : "light"}>
       <Header isAdmin/>
+      <main>
       <button id="back" onClick={handleBack}><FiChevronLeft size={16}/> voltar</button>
       <h1>{isAdd ? "Adicionar prato" : "Editar prato"}</h1>
       <form>
@@ -198,9 +199,9 @@ export function AddMenu(){
               className="inputPicture"
               onChange={e => setPicture(e.target.files[0])}
             />
-            <label htmlFor="picture"><FiDownload size={20}/>{picture ? picture.name : "Selecione a imagem"}</label>
+            <label htmlFor="picture"><FiDownload size={20}/><span>{picture ? picture.name : "Selecione a imagem"}</span></label>
           </div>
-          <div className="form-item">
+          <div className="form-item name">
             <Input
               title="Nome"
               value={name}
@@ -271,6 +272,7 @@ export function AddMenu(){
           <button id="add" onClick={e => handleAddMenu(e)}>{isAdd ? "Adicionar prato" : "Editar prato"}</button>
         </div>
       </form>
+      </main>
       <Footer/>
     </Container>
   );

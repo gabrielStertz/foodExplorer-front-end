@@ -2,23 +2,25 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   
-
   h1{
-    color:${({theme}) => theme.COLORS.COLOR_STRONG};
+    color: var(--fc-strong-dark);
 
     font-family: "Poppins", sans-serif;
-    font-size: 32px;
+    font-size: clamp(2rem, 0.5rem + 4vw, 3.2rem);
     font-weight: 500;
 
-    margin-bottom: 40px;
+    margin-bottom: clamp(2rem, 1.5rem + 1vw, 4rem);
   }
   
   .cards-and-buttons {
     width: 100%;
+    height: fit-content;
     
     display: flex;
     align-items: center;
-    gap: 27px;
+    gap: 2.7rem;
+
+    padding-bottom: 1rem;
 
     position: relative;
     left: 0;
@@ -30,12 +32,12 @@ export const Container = styled.div`
     
     z-index: 1;
     .front, .back{
-      min-width: 116px;
-      height: 512px;
+      min-width: clamp(1rem, 1rem + 2vw, 11.6rem);
+      height: clamp(30rem, 26rem + 14.5vw, 51.2rem);
   
       position: sticky;
   
-      color: ${({theme}) => theme.COLORS.COLOR_STRONG};
+      color: var(--fc-strong-dark);
   
       display: flex;
       align-items: center;
@@ -60,6 +62,24 @@ export const Container = styled.div`
       top: 0;
       right: 0;
 
+    }
+  }
+
+  &.light{
+    h1{
+      color: var(--fc-strong-light);
+    }
+
+    .cards-and-buttons{
+      .back {
+      background: linear-gradient(270deg, var(--bg-cards-dark) 0%, var(--bg-geral-light) 100%);
+      color: var(--fc-strong-light);
+    }
+  
+    .front {
+      background: linear-gradient(90deg, var(--bg-cards-dark) 0%, var(--bg-geral-light) 100%);
+      color: var(--fc-strong-light);
+    } 
     }
   }
 `;

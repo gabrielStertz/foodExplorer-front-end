@@ -2,7 +2,19 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   
-  padding: 107px 123px 77px;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  grid-template-areas: "header" "main" "footer";
+
+  main{
+    grid-area: main;
+    overflow-y: scroll;
+
+    background: var(--bg-geral-dark);
+
+    padding: 0 1rem 1rem 1rem;
+  }
 
   .title{
     display: flex;
@@ -13,26 +25,29 @@ export const Container = styled.div`
     background: none;
     border: none;
 
-    color: ${({theme}) => theme.COLORS.COLOR_STRONG};
+    color: var(--fc-strong-dark);
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: clamp(1.3rem, 1rem + 1vw, 1.6rem);
 
     display: flex;
     align-items: center;
     gap: 5px;
+
+    margin-top: -4rem;
   }
 
   h1{
-    color: ${({theme}) => theme.COLORS.COLOR_STRONG};
+    color: var(--fc-strong-dark);
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    font-size: 32px;
+    font-size: clamp(2.2rem, 1.9rem + 1vw, 3.2rem);
 
-    margin: 35px 0;
+    margin-top: clamp(2rem, 1.8rem + 1vw, 3.5rem);
+    margin-bottom: clamp(2rem, 1.8rem + 1vw, 3.5rem);
   }
   table, th, td{
 
-    border: 1px solid ${({theme}) => theme.COLORS.COLOR_LIGHT};
+    border: 1px solid var(--fc-light-dark);
 
   }
   table{
@@ -42,39 +57,85 @@ export const Container = styled.div`
   }
   
   tr{
-    height: 54px;
+    height: clamp(2.5rem, 1.4rem + 2vw, 5.4rem);
   }
   th{
-    color: ${({theme}) => theme.COLORS.COLOR_STRONG};
-    padding-left: 15px;
+    color: var(--fc-strong-dark);
+    padding-left: clamp(1rem, 0.8rem + 1vw, 1.4rem);
 
-    font-size: 14px;
+    font-size: clamp(1rem, 0.8rem + 1vw, 1.4rem);
     text-align: left;
   }
 
 td{
   
-  color: ${({theme}) => theme.COLORS.COLOR_MEDIUM};
+  color: var(--fc-medium-dark);
 
-  font-size: 14px;
+  font-size: clamp(1rem, 0.5rem + 1vw, 1.4rem);
   text-align: left;
 
-  padding-left: 15px;
+  padding-left: clamp(1rem, 0.8rem + 1vw, 1.5rem);
 }
 
 th:nth-child(1){
-  width: 150px;
+  width: clamp(8rem, 7.5rem + 4vw, 15rem);
   white-space: nowrap;
 }
 th:nth-child(2){
-  width: 150px;
+  display: none;
+  width: clamp(8rem, 7.5rem + 4vw, 15rem);
   white-space: nowrap;
 }
 th:nth-child(3){
   white-space: nowrap;
 }
 th:nth-child(4){
-  width: 150px;
+  width: clamp(8rem, 7.5rem + 4vw, 15rem);
   white-space: nowrap;
+}
+
+&.light{
+  main{
+    background: var(--bg-geral-light);
+
+    .title{
+
+      .back{
+        color: var(--fc-strong-light);
+      }
+
+      h1{
+        color: var(--fc-strong-light);
+      }
+    }  
+
+    th{
+      color: var(--fc-strong-light);
+    }
+
+    td{
+      color: var(--fc-medium-light);
+    }
+  }
+}
+
+@media(min-width: 450px){
+  th:nth-child(2){
+    display: table-cell;
+  } 
+}
+
+@media(min-width: 550px){
+  main{
+    padding-left: clamp(1.5rem, 1.2rem + 6vw, 12.3rem);
+    padding-right: clamp(1.5rem, 1.2rem + 6vw, 12.3rem);
+  }
+}
+
+@media(min-width: 700px){
+  main{
+    padding-left: clamp(0.5rem, 0.4rem + 10vw, 12.3rem);
+    padding-right: clamp(0.5rem, 0.4rem + 10vw, 12.3rem);
+  }
 }
 `;

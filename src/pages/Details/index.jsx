@@ -16,14 +16,15 @@ import { IngredientsCard } from "../../components/IngredientsCard";
 
 export function Details(){
 
+  const { addOrder, isDarkModeOn } = useAuth();
+  
   const [data, setData] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const [pictureUrl, setPictureUrl] = useState();
+  const [mode, setMode] = useState(false);
 
   const navigate = useNavigate();
   const params = useParams();
-
-  const { addOrder } = useAuth();
 
   function handleAddQuantity(){
     setQuantity(quantity + 1);
@@ -52,12 +53,14 @@ export function Details(){
       setPictureUrl(`${api.defaults.baseURL}/files/${response.data.picture}`);
     };
     fetchMenuItem();
+    setMode(isDarkModeOn);
   }, []);
 
   return (
-    <Container>
+    <Container className={mode ? "dark" : "light"}>
       <Header/>
-        <button className="back-button" onClick={handleBack}><FiChevronLeft size={24}/> voltar</button>
+      <main>
+        <button className="back-button" onClick={handleBack}><FiChevronLeft/> voltar</button>
         {
           data &&
           <div className="geral">
@@ -83,13 +86,14 @@ export function Details(){
               <div>
                 <button onClick={handleRemoveQuantity}><FiMinus size={20}/></button>
                 <span>{quantity}</span>
-                <button onClick={handleAddQuantity}><FiPlus size={20}/></button>
+                <button onClick={handleAddQuantity}><FiPlus/></button>
               </div>
               <Button onClick={() => handleIncludeOrder(data.id)} title="incluir" icon={TfiReceipt}/>
             </div>
           </div>
           </div>
         }
+      </main>  
       <Footer/>
     </Container>
   );

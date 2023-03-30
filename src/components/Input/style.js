@@ -7,29 +7,45 @@ export const Container = styled.div`
 
 
   >p{
-    color: ${({theme}) => theme.COLORS.COLOR_STRONG};
+    color: var(--fc-strong-dark);
 
-    font-size: 16px;
+    font-size: clamp(1.4rem, 1.2rem + 1vw, 1.6rem);
 
     margin-bottom: 8px;
   }
 
   >input{
     width: 100%;
-    height: 48px;
+    height: clamp(3rem, 2.7rem + 1vw, 4.8rem);
 
     background: transparent;
-    color: ${({theme}) => theme.COLORS.COLOR_STRONG};
+    color: var(--fc-strong-dark);
 
-    border: 1px solid ${({theme}) => theme.COLORS.COLOR_MEDIUM};
+    border: 1px solid var(--fc-medium-dark);
     border-radius: 5px;
 
-    font-size: 16px;
+    font-size: clamp(1.4rem, 1.2rem + 1vw, 1.6rem);
 
-    padding: 12px 14px;
+    padding: 1.2rem 1.4rem;
 
     &::placeholder{
-      color: ${({theme}) => theme.COLORS.COLOR_MEDIUM};
+      color: var(--fc-medium-dark);
+    }
+  }
+
+  &.light{
+    >p{
+      color: var(--fc-strong-light);
+    }
+
+    >input{
+      color: var(--fc-strong-light);
+
+      border: 1px solid var(--fc-medium-light);
+
+      &::placeholder{
+        color: var(--fc-medium-light);
+      }
     }
   }
 `;

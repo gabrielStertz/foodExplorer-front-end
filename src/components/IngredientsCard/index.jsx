@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 import { Container } from "./style";
 
+import { useAuth } from "../../hooks/auth";
+
 import alface from "./assets/alface.png";
 import ameixa from "./assets/ameixa.png";
 import amendoas from "./assets/amendoas.png";
@@ -30,6 +32,8 @@ import whiskey from "./assets/whiskey.png";
 export function IngredientsCard({ingredient}){
 
   const [image, setImage] = useState();
+
+  const { isDarkModeOn } = useAuth();
 
   const ingredientSplit = ingredient.split(" ");
   const ingredientConcat = ingredientSplit.join("").toLowerCase();
@@ -101,7 +105,7 @@ export function IngredientsCard({ingredient}){
   }, []);
 
   return(
-    <Container>
+    <Container className={isDarkModeOn ? "dark" : "light"}>
       <img src={image} alt={ingredient} />
       <p>{ingredient}</p>
     </Container>
